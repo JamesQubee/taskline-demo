@@ -20,7 +20,9 @@ export function StatusBreakdown({
   const filled = TASK_STATUSES.filter((status) => byStatus[status] > 0);
 
   return (
-    <div>
+    // A container, so the legend's column count follows the width of this
+    // card rather than the width of the window.
+    <div className="@container">
       <div className="flex h-3 gap-0.5" aria-hidden="true">
         {filled.map((status, index) => (
           <div
@@ -49,10 +51,10 @@ export function StatusBreakdown({
         ))}
       </div>
 
-      <dl className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4">
+      <dl className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3 @md:grid-cols-4">
         {TASK_STATUSES.map((status) => (
           <div key={status}>
-            <dt className="flex items-center gap-2 text-sm text-muted">
+            <dt className="flex items-center gap-2 text-sm whitespace-nowrap text-muted">
               <span
                 aria-hidden="true"
                 className={cn("size-2.5 shrink-0 rounded-[3px]", STAGE_FILL[status])}
