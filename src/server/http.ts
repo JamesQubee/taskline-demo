@@ -1,9 +1,10 @@
 import "server-only";
+import { unstable_rethrow } from "next/navigation";
 import { z } from "zod";
-import type { ApiErrorBody } from "@/lib/types";
+import type { ApiErrorBody, CurrentUser } from "@/lib/types";
 import { fieldErrors } from "@/lib/validation";
 import { AppError, notFound, unauthorized } from "./errors";
-import { getRequestUser, type CurrentUser } from "./session";
+import { getRequestUser } from "./session";
 
 type RouteContext<Params> = { params: Promise<Params> };
 
@@ -35,6 +36,10 @@ export function withUser<Params extends object = object>(
 }
 
 export function errorResponse(error: unknown): Response {
+  // Next.js signals redirects and "this route is dynamic" by throwing. Those
+  // are not failures, so hand them back to the framework.
+  unstable_rethrow(error);
+
   if (error instanceof AppError) {
     const body: ApiErrorBody = {
       error: { code: error.code, message: error.message, fields: error.fields },

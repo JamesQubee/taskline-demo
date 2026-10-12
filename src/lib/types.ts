@@ -3,6 +3,14 @@ import type { ProjectColor, TaskPriority, TaskStatus } from "./constants";
 // The shapes the API returns and the UI renders. Timestamps are ISO strings so
 // a value looks the same whether it came from a Server Component or a fetch.
 
+/** The only user fields the rest of the app, and the browser, ever see. */
+export type CurrentUser = {
+  id: string;
+  name: string;
+  email: string;
+  isDemo: boolean;
+};
+
 export type Project = {
   id: string;
   name: string;

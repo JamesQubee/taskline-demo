@@ -3,14 +3,7 @@ import { cache } from "react";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { getAuth } from "@/lib/auth";
-
-/** The only user fields the rest of the app, and the browser, ever see. */
-export type CurrentUser = {
-  id: string;
-  name: string;
-  email: string;
-  isDemo: boolean;
-};
+import type { CurrentUser } from "@/lib/types";
 
 async function readUser(requestHeaders: Headers): Promise<CurrentUser | null> {
   const auth = await getAuth();
