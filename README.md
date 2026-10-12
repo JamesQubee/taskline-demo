@@ -2,6 +2,8 @@
 
 A small, complete project tracker: accounts, a Postgres database, a REST API and a drag-and-drop board. Built with Next.js, React, TypeScript and Tailwind CSS.
 
+**Live demo: https://taskline-demo.vercel.app** (click "Try the live demo", no sign-up needed)
+
 ![Board with four columns of tasks](screenshots/board.png)
 
 | Dashboard | Board on a phone |
