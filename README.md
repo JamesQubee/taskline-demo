@@ -144,6 +144,12 @@ The suite runs the real Route Handlers against an in-memory Postgres that is mig
 - cards keep the right order when moved inside a column and between columns
 - demo workspaces are seeded per visitor, isolated from each other, and purged after a day
 
+To run the same suite through the production database driver, point it at a Postgres server. Use a scratch database, because the tests create accounts and delete demo accounts:
+
+```bash
+TEST_DATABASE_URL=postgres://user:password@localhost:5432/taskline_test pnpm test --no-file-parallelism
+```
+
 ## Deploy to Vercel
 
 1. Import the repository in Vercel.
