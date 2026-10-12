@@ -39,4 +39,5 @@ export const LIMITS = {
   taskDescription: 2000,
   projectsPerUser: 50,
   tasksPerProject: 500,
+  passwordMin: 8,
 } as const;
