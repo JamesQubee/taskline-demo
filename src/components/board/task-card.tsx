@@ -94,7 +94,12 @@ export function SortableTaskCard({
     <div
       ref={setNodeRef}
       style={{ transform: CSS.Transform.toString(transform), transition }}
-      className={cn("touch-manipulation", isDragging && "opacity-40")}
+      className={cn(
+        // Press-and-hold starts a drag on touch screens. Without these, a
+        // phone answers the same gesture by selecting the card's text.
+        "touch-manipulation select-none [-webkit-touch-callout:none]",
+        isDragging && "opacity-40",
+      )}
       {...listeners}
     >
       <TaskCardView
