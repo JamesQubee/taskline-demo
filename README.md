@@ -165,7 +165,7 @@ Optional variables:
 | --- | --- |
 | `BETTER_AUTH_URL` | Public URL of the app. Only needed on a custom domain |
 | `NEXT_PUBLIC_AUTHOR_NAME`, `NEXT_PUBLIC_AUTHOR_URL` | Credit shown in the site footer |
-| `NEXT_PUBLIC_REPO_URL` | "Source code" link in the site footer |
+| `NEXT_PUBLIC_REPO_URL` | "Source code" link in the site footer, and links from the file paths on the "How it's built" page |
 
 ## Not included
 

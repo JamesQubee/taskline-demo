@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ArrowDown } from "lucide-react";
 import { DemoButton } from "@/components/demo-button";
 import { Card } from "@/components/ui/primitives";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "How it's built",
@@ -97,6 +98,24 @@ const LEFT_OUT = [
   "A dark theme",
 ];
 
+/** A file or folder path. Opens that place in the repository when one is set. */
+function SourcePath({ path }: { path: string }) {
+  const className =
+    "rounded bg-sunken px-1.5 py-0.5 font-mono text-xs break-all";
+  if (!site.repoUrl) return <code className={className}>{path}</code>;
+
+  // GitHub shows folders under /tree and single files under /blob.
+  const view = path.endsWith("/") ? "tree" : "blob";
+  return (
+    <a
+      href={`${site.repoUrl}/${view}/main/${path}`}
+      className={`${className} text-brand-strong underline decoration-line-strong underline-offset-2 hover:decoration-brand`}
+    >
+      {path}
+    </a>
+  );
+}
+
 function Layer({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="rounded-card border border-line bg-surface px-4 py-3 text-center shadow-card">
@@ -163,12 +182,7 @@ export default function ApproachPage() {
                 <p className="text-sm text-muted md:text-base">{built}</p>
                 <p className="flex flex-wrap gap-1.5 self-start">
                   {where.map((path) => (
-                    <code
-                      key={path}
-                      className="rounded bg-sunken px-1.5 py-0.5 font-mono text-xs break-all"
-                    >
-                      {path}
-                    </code>
+                    <SourcePath key={path} path={path} />
                   ))}
                 </p>
               </li>
